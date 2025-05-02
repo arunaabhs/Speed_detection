@@ -43,9 +43,3 @@ I designed this program so that it could work on virtually any video source.
 While my program works decently well, there are some things I'd like to work on, namely:
 * A manual livestream loader to reduce lag/random jumps (it would need to be manual because it needs to access [.m3u8 metadata](https://tools.ietf.org/html/rfc8216#section-4.3))
 * Lane detection so that this program could work on multi-lane roads
-
-### Credits ###
-
-This [incredible StackOverflow post](https://stackoverflow.com/questions/36254452/counting-cars-opencv-python-issue/36274515#36274515), which largely inspired me to redo this project in the first place.
-
-The [livestreams](http://dot.ca.gov/d3/cameras.html) are provided by the California Department of Transportation
