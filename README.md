@@ -20,7 +20,7 @@ I use KNN background subtraction and morphology to isolate the vehicles and dete
 
 #### Vehicle Tracking ####
 
-To find a car's speed, we need to know how its moving from frame to frame. We can already detect cars on any given frame, but we need a kind of permanence to detect as the move in the video. This is a rather long process, but in general we compare the current detections to the previous detections, and based on manually set parameters, we determine whether or not the new detections are valid movements. The StackOverflow post in the credits goes does a much better job of explaining this.
+To find a car's speed, we need to know how its moving from frame to frame. We can already detect cars on any given frame, but we need a kind of permanence to detect as the move in the video. This is a rather long process, but in general we compare the current detections to the previous detections, and based on manually set parameters, we determine whether or not the new detections are valid movements.
 
 #### Speed Calculation ####
 
