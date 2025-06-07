@@ -10,7 +10,7 @@ This demo gif will be referenced multiple times in the explanation, so I'll just
 
 #### Cropping ####
 
-The first thing my program does to the video is crop out any unnecessary areas. In the gif below, the black box is blocking out a part of the screen that has motion but shouldn't be part of our detection. These cropped regions can be manually selected at runtime (click and drag on the "Source Image" window) and are saved in `settings.json` (when 's' key is pressed). Saved regions are cropped out on startup.
+The first step in the pipeline involves removing irrelevant areas from the video. As shown in the demo GIF, some regions—such as areas with motion that should not be considered for vehicle detection—are excluded. These cropped regions can be manually selected during runtime by clicking and dragging on the "Source Image" window. When the 's' key is pressed, the selected regions are saved to settings.json and automatically applied on startup.
 
 #### Vehicle Detection ####
 
@@ -20,23 +20,29 @@ I use KNN background subtraction and morphology to isolate the vehicles and dete
 
 #### Vehicle Tracking ####
 
-To find a car's speed, we need to know how its moving from frame to frame. We can already detect cars on any given frame, but we need a kind of permanence to detect as the move in the video. This is a rather long process, but in general we compare the current detections to the previous detections, and based on manually set parameters, we determine whether or not the new detections are valid movements.
+To calculate vehicle speed, it’s necessary to track vehicles across multiple frames. While individual frames can show vehicle positions, tracking provides the temporal continuity needed for motion analysis. The program compares current detections to those from previous frames using heuristics and configurable parameters to determine valid motion and ensure accurate tracking.
 
 #### Speed Calculation ####
 
-This program has two methods of detecting speed: *distance mode* and *average mode*.
+The program supports two modes of speed calculation:
 
-*Distance mode* will takes in a preset "distance" value (how long the road in the video is). The program uses this value and the vehicle's time on screen to calculate its speed.
+Distance Mode: Requires a predefined "real-world distance" (e.g., the physical length of the road in the video). Speed is calculated using this distance and the time a vehicle is visible on screen.
 
-*Average mode* samples a certain number of vehicles to find there average speed on screen (in pixels). Subsequent cars are compared to the average, and their speeds are reported as percent differences from the average. This mode is useful when you don't know the distance of the road in the video, so it can be applied to almost any road. The demo gif is calculating speed in average mode.
+Average Mode: Computes the average speed of a sample set of vehicles in pixels per second. New detections are then compared to this average, with results reported as percentage differences. This mode is particularly useful when the actual road length is unknown.
 
-It's important to note that speed is calculated once a vehicle passes the light blue line (again, see the demo gif). The position and angle (i.e. horizontal/vertical) can be customized for different roads/video sources.
+Speed is calculated once a vehicle crosses a user-defined detection line (e.g., the light blue line shown in the demo GIF). The position and orientation of this line can be customized for different scenarios.
 
 #### Settings ####
 
-I designed this program so that it could work on virtually any video source.
+The application is designed to support a variety of video sources (referred to as "roads"). Configuration data for each road is stored in settings.json, including:
 
-`settings.json` stores settings for each individual video source (I call them "roads" in my program). A few examples include the positon of the detection line, the url of the video source, and the cropped out regions. Of course, you can look at `settings.json` to see how I actually store these values.
+1. Video source URL
+
+2. Detection line coordinates and orientation
+
+3. Cropped regions
+
+Refer to the settings.json file for the specific structure and examples of these configurations.
 
 ### Improvements ###
 
