@@ -48,4 +48,4 @@ Refer to the settings.json file for the specific structure and examples of these
 
 While my program works decently well, there are some things I'd like to work on, namely:
 * A manual livestream loader to reduce lag/random jumps (it would need to be manual because it needs to access [.m3u8 metadata](https://tools.ietf.org/html/rfc8216#section-4.3))
-* Lane detection so that this program could work on multi-lane roads
+* Lane detection so that this program could work on multi-lane roads effeciently.
